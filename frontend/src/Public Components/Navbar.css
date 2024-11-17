@@ -9,6 +9,7 @@
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1000;
 }
 .logo {
   flex: 1;
@@ -122,6 +123,7 @@
     right: 0;
     left: 0;
     transition: all 1s ease-in-out;
+    z-index: 1000;
   }
 
   .search-container-mobile,

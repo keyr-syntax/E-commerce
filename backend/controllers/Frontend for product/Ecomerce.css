@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  width: 100%;
+}
+.container-dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  width: 100%;
+}
+.display {
+  display: block;
+  margin: 20px 40px;
+  border: 1px solid green;
+  box-sizing: border-box;
+  text-align: center;
+}
+.display > img {
+  object-fit: cover;
+  max-width: 380px;
+  min-height: 300px;
+}
+.display button {
+  background-color: green;
+  padding: 5px 30px;
+  margin: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}

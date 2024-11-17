@@ -1,0 +1,121 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 95%;
+  margin: 80px auto 30px auto;
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-image {
+  width: 100%;
+  height: 200px;
+  border: none;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+
+@media (min-width: 640px) {
+  .carousel-image {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-image {
+    height: 200px;
+  }
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  padding: 4px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-button:hover {
+  background-color: black;
+}
+
+@media (min-width: 640px) {
+  .nav-button {
+    padding: 8px;
+  }
+}
+
+.nav-button.prev {
+  left: 4px;
+}
+
+.nav-button.next {
+  right: 4px;
+}
+
+@media (min-width: 640px) {
+  .nav-button.prev {
+    left: 8px;
+  }
+
+  .nav-button.next {
+    right: 8px;
+  }
+}
+
+.nav-button svg {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+}
+
+@media (min-width: 640px) {
+  .nav-button svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.buy-now-container {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 640px) {
+  .buy-now-container {
+    bottom: 16px;
+  }
+}
+
+.buy-now-button {
+  background-color: #151533;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.buy-now-button:hover {
+  background-color: black;
+}
+
+@media (min-width: 640px) {
+  .buy-now-button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}

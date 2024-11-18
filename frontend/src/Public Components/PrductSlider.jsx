@@ -1,11 +1,10 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ProductContext } from "./ContextProvider.jsx";
 import { useEffect, useState, useContext } from "react";
-import Loader from "./Loader.jsx";
 import "./PrductSlider.css";
 
 function PrductSlider() {
-  const { sliderImage, alt, isLoading } = useContext(ProductContext);
+  const { sliderImage, alt } = useContext(ProductContext);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -29,8 +28,7 @@ function PrductSlider() {
   };
   return (
     <>
-      {isLoading === true && <Loader />}
-      {isLoading === false && sliderImage && sliderImage.length > 0 && (
+      {sliderImage && sliderImage.length > 0 && (
         <div className="carousel-container">
           <div className="image-container">
             <img

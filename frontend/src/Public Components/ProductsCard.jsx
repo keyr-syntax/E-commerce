@@ -8,18 +8,19 @@ import "react-toastify/dist/ReactToastify.css";
 const ProductCard = () => {
   const {
     addToCart,
-    allProducts,
+    // allProducts,
     addToFavorites,
     removeFromFavorites,
     isFavorite,
     renderStars,
+    productsforhomepage,
   } = useContext(ProductContext);
 
   return (
     <>
-      {allProducts && allProducts.length > 0 && (
+      {productsforhomepage && productsforhomepage.length > 0 && (
         <div className="individualcard-container">
-          {allProducts.map(
+          {productsforhomepage.map(
             (product) =>
               product && (
                 <div key={product._id} className="individualcard">

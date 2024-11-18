@@ -12,6 +12,7 @@ function ContextProvider({ children }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
+  const [productsforhomepage, setProductsforhomepage] = useState([]);
   const [totalSales, setTotalSales] = useState([]);
   const [salesByDate, setSalesByDate] = useState([]);
   const [salesByWeek, setSalesByWeek] = useState([]);
@@ -42,7 +43,7 @@ function ContextProvider({ children }) {
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const [orderDetails, setOrderDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [turnoffproducts, setTurnoffproducts] = useState(false);
+  const [isLoadingforhomepage, setIsLoadingforhomepage] = useState(false);
 
   // const API_URL = "http://localhost:5000";
   // const API_URL = "https://n8gx23hb-5000.inc1.devtunnels.ms";
@@ -64,14 +65,15 @@ function ContextProvider({ children }) {
     fetchOrdersByDate();
   }, []);
   const filterProductsByCategory = (category) => {
-    setIsLoading(true);
+    setIsLoadingforhomepage(true);
     const filteredByCategory = allProducts.filter(
       (product) => product.category === category
     );
 
     setFilterByCategory(filteredByCategory);
+    setProductsforhomepage(filteredByCategory);
     setNumberOfProductsInCategory(filteredByCategory.length);
-    setIsLoading(false);
+    setIsLoadingforhomepage(false);
   };
   const fetchAllNotificationsForNewOrder = async () => {
     try {
@@ -454,6 +456,7 @@ function ContextProvider({ children }) {
         );
         const altText = response.data.allProducts.map((text) => text.name);
         setAllProducts(response.data.allProducts);
+        setProductsforhomepage(response.data.allProducts);
         setSliderImage(images);
         setAlt(altText);
         setIsLoading(false);
@@ -756,8 +759,8 @@ function ContextProvider({ children }) {
           handleOrderDetails,
           isLoading,
           setIsLoading,
-          turnoffproducts,
-          setTurnoffproducts,
+          isLoadingforhomepage,
+          productsforhomepage,
         }}
       >
         {children}

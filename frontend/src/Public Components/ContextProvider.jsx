@@ -41,6 +41,9 @@ function ContextProvider({ children }) {
   const [newlyRegisteredUser, setNewlyRegisteredUser] = useState([]);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const [orderDetails, setOrderDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [turnoffproducts, setTurnoffproducts] = useState(false);
+
   // const API_URL = "http://localhost:5000";
   // const API_URL = "https://n8gx23hb-5000.inc1.devtunnels.ms";
   const API_URL = "https://e-commerce-backend-seven-theta.vercel.app";
@@ -60,7 +63,16 @@ function ContextProvider({ children }) {
     fetchSalesByYear();
     fetchOrdersByDate();
   }, []);
+  const filterProductsByCategory = (category) => {
+    setIsLoading(true);
+    const filteredByCategory = allProducts.filter(
+      (product) => product.category === category
+    );
 
+    setFilterByCategory(filteredByCategory);
+    setNumberOfProductsInCategory(filteredByCategory.length);
+    setIsLoading(false);
+  };
   const fetchAllNotificationsForNewOrder = async () => {
     try {
       const data = await fetch(
@@ -432,6 +444,7 @@ function ContextProvider({ children }) {
 
   const fetchAllProductsFordisplay = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `${API_URL}/api/product/fetchallproducts`
       );
@@ -443,6 +456,7 @@ function ContextProvider({ children }) {
         setAllProducts(response.data.allProducts);
         setSliderImage(images);
         setAlt(altText);
+        setIsLoading(false);
         console.log(
           "All products fetched successfully!",
           response.data.allProducts
@@ -521,14 +535,6 @@ function ContextProvider({ children }) {
     } catch (error) {
       console.log("Error while fetching all categories", error.message);
     }
-  };
-
-  const filterProductsByCategory = (category) => {
-    const filteredByCategory = allProducts.filter(
-      (product) => product.category === category
-    );
-    setFilterByCategory(filteredByCategory);
-    setNumberOfProductsInCategory(filteredByCategory.length);
   };
 
   const filterProductsById = (_id) => {
@@ -748,6 +754,10 @@ function ContextProvider({ children }) {
           markUserAsSeen,
           orderDetails,
           handleOrderDetails,
+          isLoading,
+          setIsLoading,
+          turnoffproducts,
+          setTurnoffproducts,
         }}
       >
         {children}

@@ -4,11 +4,14 @@ import { CircleUserRound } from "lucide-react";
 import "./Navbar.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ProductContext } from "./ContextProvider.jsx";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Navbar() {
   const { totalItems, isAdmin, isLoggedIn } = useContext(ProductContext);
   const [searchWord, setSearchWord] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -33,7 +36,24 @@ function Navbar() {
             type="text"
             placeholder="Search products"
           />
-          <Link to={`/fetchproductbykeyword/${searchWord}`}>
+          <Link
+            onClick={() => {
+              if (!searchWord) {
+                alert("Please write something...");
+                toast.success("Please write something...", {
+                  position: "top-center",
+                  autoClose: 1000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: false,
+                  progress: undefined,
+                  theme: "dark",
+                });
+              }
+            }}
+            to={`/fetchproductbykeyword/${searchWord}`}
+          >
             <SearchIcon className="search-icon-desktop" />
           </Link>
         </div>
@@ -48,13 +68,15 @@ function Navbar() {
               Dashboard
             </Link>
           )}
-          <Link className="navbar-options-link">Favorites</Link>
-          {isLoggedIn && (
+          <Link to="/favorites" className="navbar-options-link">
+            Favorites
+          </Link>
+          {isLoggedIn === false && (
             <Link className="navbar-options-link" to="/login">
               Login
             </Link>
           )}
-          {!isLoggedIn && (
+          {isLoggedIn === true && (
             <Link className="navbar-options-link" to="/logout">
               Logout
             </Link>
@@ -117,6 +139,7 @@ function Navbar() {
           </div>
         </div>
       )}
+      <ToastContainer limit={1} />
     </>
   );
 }

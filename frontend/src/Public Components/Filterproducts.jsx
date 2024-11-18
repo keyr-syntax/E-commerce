@@ -8,18 +8,23 @@ export default function Filterproducts() {
 
   return (
     <>
-      <div className="filter-link-container">
-        <Link className="filter-products-fixed">Filter Products</Link>
-        {allCategories?.map((category) => (
-          <Link
-            className="filter-products-link"
-            key={category._id}
-            to={`/filterproducts/${category.category}`}
-          >
-            {category.category}
+      {allCategories && allCategories.length > 0 && (
+        <div className="filter-link-container">
+          <Link className="filter-products-fixed">Filter </Link>
+          <Link to="/" className="filter-products-link">
+            All
           </Link>
-        ))}
-      </div>
+          {allCategories.map((category) => (
+            <Link
+              className="filter-products-link"
+              key={category._id}
+              to={`/filterproductlistbycategory/${category.category}`}
+            >
+              {category.category}
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   );
 }

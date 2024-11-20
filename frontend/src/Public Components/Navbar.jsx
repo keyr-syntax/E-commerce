@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { MenuIcon, SearchIcon, ShoppingCartIcon, X } from "lucide-react";
 import { CircleUserRound } from "lucide-react";
 import "./Navbar.css";
@@ -140,6 +140,7 @@ function Navbar() {
         </div>
       )}
       <ToastContainer limit={1} />
+      <Outlet />
     </>
   );
 }

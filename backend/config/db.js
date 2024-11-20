@@ -11,13 +11,13 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    if (!process.env.MONGODB_ATLAS) {
+    if (!process.env.MONGODB_LOCAL) {
       throw new Error(
         "MongoDB connection string not found in environment variables"
       );
     }
 
-    const mongoURI = process.env.MONGODB_ATLAS;
+    const mongoURI = process.env.MONGODB_LOCAL;
     console.log("Attempting to connect to MongoDB...");
 
     const conn = await mongoose.connect(mongoURI);
@@ -26,7 +26,7 @@ const connectDB = async () => {
     console.error("Error connecting to MongoDB:");
     console.error("Error message:", error.message);
     console.error("Environment variables loaded:", {
-      MONGODB_ATLAS: process.env.MONGODB_ATLAS,
+      MONGODB_LOCAL: process.env.MONGODB_LOCAL,
     });
     process.exit(1);
   }

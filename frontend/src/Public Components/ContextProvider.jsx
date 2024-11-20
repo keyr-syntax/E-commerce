@@ -45,9 +45,9 @@ function ContextProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingforhomepage, setIsLoadingforhomepage] = useState(false);
 
-  const API_URL = "http://localhost:5000";
+  // const API_URL = "http://localhost:5000";
   // const API_URL = "https://n8gx23hb-5000.inc1.devtunnels.ms";
-  // const API_URL = "https://e-commerce-backend-seven-theta.vercel.app";
+  const API_URL = "https://e-commerce-backend-seven-theta.vercel.app";
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];

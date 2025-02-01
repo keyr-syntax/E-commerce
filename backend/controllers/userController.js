@@ -9,9 +9,6 @@ const {
 } = require("../models/notificationModel.js");
 ACCESS_TOKEN_SECRET =
   "f7184f99b71a947afe96623b9811e04c455955c734ec1e7ddb917734e03128f2126b101e60d61e4ad7245295178378bf44fbc1e4b57092ba0e82faa73a76379c";
-REFRESH_TOKEN_SECRET =
-  "577483a3db3cb3a929081fd36dfe4db69b9ef25d975bfc2da48377c840480b92b3303d6c8b17f849341f12db80fc10b529c821f16ce870cfda28d7d2b10ef289";
-
 const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -46,14 +43,14 @@ const createUser = async (req, res) => {
     });
     const accessToken = jwt.sign(
       { username: user.username },
-      ACCESS_TOKEN_SECRET,
+      process.env.ACCESS_TOKEN_SECRET,
       {
         expiresIn: "3d",
       }
     );
     const refreshToken = jwt.sign(
       { username: user.username },
-      REFRESH_TOKEN_SECRET,
+      process.env.REFRESH_TOKEN_SECRET,
       {
         expiresIn: "3d",
       }
@@ -108,14 +105,14 @@ const login_user = async (req, res) => {
       if (match) {
         const accessToken = jwt.sign(
           { username: user.username },
-          ACCESS_TOKEN_SECRET,
+          process.env.ACCESS_TOKEN_SECRET,
           {
             expiresIn: "3d",
           }
         );
         const refreshToken = jwt.sign(
           { username: user.username },
-          REFRESH_TOKEN_SECRET,
+          process.env.REFRESH_TOKEN_SECRET,
           {
             expiresIn: "3d",
           }
@@ -227,7 +224,7 @@ const getUserProfile = async (req, res) => {
   }
 
   try {
-    jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, data) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, data) => {
       if (err) {
         console.log("Error during JWT token verification:", err);
         return res.json({ isAuthenticated: false, message: err.message });
@@ -277,7 +274,7 @@ const updateUserProfile = async (req, res) => {
   }
 
   try {
-    jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, data) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, data) => {
       if (err) {
         console.log("Error during JWT token verification:", err);
         return res.json({ isAuthenticated: false, message: err.message });
@@ -298,14 +295,14 @@ const updateUserProfile = async (req, res) => {
           const updatedUser = await user.save();
           const accessToken = jwt.sign(
             { username: user.username },
-            ACCESS_TOKEN_SECRET,
+            process.env.ACCESS_TOKEN_SECRET,
             {
               expiresIn: "3d",
             }
           );
           const refreshToken = jwt.sign(
             { username: user.username },
-            REFRESH_TOKEN_SECRET,
+            process.env.REFRESH_TOKEN_SECRET,
             {
               expiresIn: "3d",
             }
@@ -494,7 +491,7 @@ const verifyUsers = (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, data) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, data) => {
       if (err) {
         console.log("Error during JWT token verification:", err);
         return res.json({ isAuthenticated: false, message: err.message });
@@ -538,7 +535,7 @@ const verifyAdmins = (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, data) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, data) => {
       if (err) {
         console.log("Error during JWT token verification:", err);
         return res.json({ isAuthenticated: false, message: err.message });

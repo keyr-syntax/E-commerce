@@ -7,8 +7,7 @@ const {
   NotificationForOrder,
   NotificationForUser,
 } = require("../models/notificationModel.js");
-ACCESS_TOKEN_SECRET =
-  "f7184f99b71a947afe96623b9811e04c455955c734ec1e7ddb917734e03128f2126b101e60d61e4ad7245295178378bf44fbc1e4b57092ba0e82faa73a76379c";
+
 const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;

@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.9.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
     "cookie-parser": "^1.4.7",
@@ -20,7 +20,7 @@
     "express-fileupload": "^1.5.1",
     "express-formidable": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.8.1",
+    "mongoose": "^8.8.2",
     "nodemon": "^3.1.7",
     "socket.io": "^4.8.1",
     "validator": "^13.12.0"

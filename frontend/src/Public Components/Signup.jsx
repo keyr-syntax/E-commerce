@@ -3,29 +3,33 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "./ContextProvider";
 
-import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import toast from "react-hot-toast";
+const Signup = () => {
+  const {
+    API_URL,
 
-const Login = () => {
-  const { API_URL, setIsAdmin, setIsLoggedIn, setUser } =
-    useContext(ProductContext);
+    setIsAdmin,
 
+    setIsLoggedIn,
+
+    setUser,
+  } = useContext(ProductContext);
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
-  // const [allowRedirect, setAllowRedirect] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await fetch(`${API_URL}/api/user/login`, {
+      const data = await fetch(`${API_URL}/api/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          username,
           email,
           password,
         }),
@@ -33,44 +37,51 @@ const Login = () => {
 
       const response = await data.json();
       if (response.success) {
-        setShowMessage(true);
         setUser(response.user);
         setIsLoggedIn(true);
         setIsAdmin(response.user.isAdmin);
-        // setAllowRedirect(true);
+        // navigate(response.user.isAdmin ? "/admin" : "/");
+
         localStorage.setItem("token", response.token);
         document.cookie = `token=${response.token}`;
         console.log("token", response.token);
         console.log("user", response.user);
+        toast.success("Registration successful");
+        navigate("/");
       } else {
         toast.error(`${response.message}`);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(`${error.message}`);
     }
   };
-  if (showMessage === true) {
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
-    setTimeout(() => {
-      navigate("/");
-    }, 3000);
-  }
 
   return (
     <>
       <Navbar />
-      {showMessage === true && toast.success("Login successful")}
       <StyledWrapper>
-        <div className="container">
-          <div className="heading">LogIn</div>
-          <form onSubmit={handleLogin} className="form">
+        <div className="container-signup">
+          <div className="heading">Register</div>
+          <form onSubmit={handleSubmit} className="form">
             <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
-              className="input"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              className="input-signup"
+              type="text"
+              name="username"
+              id="username"
+              placeholder="username"
+            />
+            <input
+              required
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              className="input-signup"
               type="email"
               name="email"
               id="email"
@@ -79,8 +90,10 @@ const Login = () => {
             <input
               required
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              className="input-signup"
               type="password"
               name="password"
               id="password"
@@ -89,17 +102,14 @@ const Login = () => {
             <span className="forgot-password">
               <a href="#">Forgot Password?</a>
             </span>
-            <button className="login-button" type="submit">
-              {" "}
-              Login
-            </button>
+            <input className="login-button" type="submit" value="Register" />
           </form>
-          <div className="no-account">
-            <span className="no-account">
-              No Account?{" "}
-              <Link className="no-account" to="/signup">
+          <div className="no-account-signup">
+            <span className="no-account-signup">
+              Already have Account?{" "}
+              <Link className="no-account-signup" to="/login">
                 {" "}
-                Register{" "}
+                Login{" "}
               </Link>{" "}
             </span>
           </div>
@@ -110,18 +120,20 @@ const Login = () => {
 };
 
 const StyledWrapper = styled.div`
-  .container {
+  .container-signup {
     max-width: 350px;
     background-color: #151533;
     border-radius: 8px;
-    padding: 35px 35px;
+    padding: 25px 35px;
     border: 1px solid rgb(255, 255, 255);
-    margin: 85px auto;
+    margin: 75px auto;
   }
-  .no-account {
+  .no-account-signup {
     text-align: center;
     padding: 5px;
     font-size: 18px;
+    color: white;
+    text-decoration: none;
   }
   .heading {
     text-align: center;
@@ -134,7 +146,7 @@ const StyledWrapper = styled.div`
     margin-top: 20px;
   }
 
-  .form .input {
+  .form .input-signup {
     width: 100%;
     background: white;
     border: none;
@@ -144,11 +156,11 @@ const StyledWrapper = styled.div`
     color: black;
   }
 
-  .form .input::-moz-placeholder {
+  .form .input-signup::-moz-placeholder {
     color: black;
   }
 
-  .form .input::placeholder {
+  .form .input-signup::placeholder {
     color: black;
   }
 
@@ -228,4 +240,4 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default Login;
+export default Signup;

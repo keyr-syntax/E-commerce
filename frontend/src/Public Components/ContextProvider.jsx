@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -44,10 +45,12 @@ function ContextProvider({ children }) {
   const [orderDetails, setOrderDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingforhomepage, setIsLoadingforhomepage] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [orderStatusMessage, setOrderStatusMessage] = useState("");
 
-  // const API_URL = "http://localhost:5000";
+  const API_URL = "http://localhost:5000";
   // const API_URL = "https://n8gx23hb-5000.inc1.devtunnels.ms";
-  const API_URL = "https://e-commerce-backend-seven-theta.vercel.app";
+  // const API_URL = "https://e-commerce-backend-seven-theta.vercel.app";
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
@@ -333,6 +336,7 @@ function ContextProvider({ children }) {
       );
       const response = await data.json();
       if (response.success) {
+        setOrderStatusMessage("Payment status changed to Paid");
         fetchAllOrdersForAdmin();
         setOrderDetails(response.orderStatusChangedToPaid);
       }
@@ -354,6 +358,7 @@ function ContextProvider({ children }) {
       );
       const response = await data.json();
       if (response.success) {
+        setOrderStatusMessage("Delivery status changed to Delivered");
         fetchAllOrdersForAdmin();
         setOrderDetails(response.orderDelivered);
       }
@@ -376,6 +381,7 @@ function ContextProvider({ children }) {
 
       const response = await data.json();
       if (response.success) {
+        setOrderStatusMessage("Payment status changed to Pending");
         fetchAllOrdersForAdmin();
         setOrderDetails(response.reversedPaymentStatus);
       }
@@ -397,6 +403,7 @@ function ContextProvider({ children }) {
       );
       const response = await data.json();
       if (response.success) {
+        setOrderStatusMessage("Delivery status changed to Pending");
         fetchAllOrdersForAdmin();
         setOrderDetails(response.reversedDeliveryStatus);
       }
@@ -405,27 +412,26 @@ function ContextProvider({ children }) {
     }
   };
   const deleteOrdersByAdmin = async (_id) => {
-    if (window.confirm("Are you sure you want to delete this order?")) {
-      try {
-        const data = await fetch(
-          `${API_URL}/api/order/deleteorderbyadmin/${_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        const response = await data.json();
-        if (response.success) {
-          fetchAllOrdersForAdmin();
-          fetchTotalSalesByAdmin();
-          // navigate("/admin/order");
+    try {
+      const data = await fetch(
+        `${API_URL}/api/order/deleteorderbyadmin/${_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      } catch (error) {
-        console.log("Error while deleting orders", error.message);
+      );
+      const response = await data.json();
+      if (response.success === true) {
+        setConfirmDelete(false);
+        fetchAllOrdersForAdmin();
+        fetchTotalSalesByAdmin();
+        // navigate("/admin/order");
       }
+    } catch (error) {
+      console.log("Error while deleting orders", error.message);
     }
   };
 
@@ -446,7 +452,6 @@ function ContextProvider({ children }) {
 
   const fetchAllProductsFordisplay = async () => {
     try {
-      setIsLoading(true);
       const response = await axios.get(
         `${API_URL}/api/product/fetchallproducts`
       );
@@ -459,7 +464,6 @@ function ContextProvider({ children }) {
         setProductsforhomepage(response.data.allProducts);
         setSliderImage(images);
         setAlt(altText);
-        setIsLoading(false);
         console.log(
           "All products fetched successfully!",
           response.data.allProducts
@@ -544,6 +548,29 @@ function ContextProvider({ children }) {
     const filteredItemById = allProducts.find((product) => product._id === _id);
     setFilteredById(filteredItemById);
     console.log("Filtered by ID", filteredItemById);
+  };
+
+  const fetchProductById = async (_id) => {
+    setIsLoading(true);
+    try {
+      const data = await fetch(
+        `${API_URL}/api/product/fetchproductbyid/${_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const response = await data.json();
+      if (response.success) {
+        setFilteredById(response.product);
+        setIsLoading(false);
+        console.log("Individual produc fetched", response.product);
+      }
+    } catch (error) {
+      console.log("Error while fetching product by ID", error);
+    }
   };
 
   useEffect(() => {
@@ -761,9 +788,41 @@ function ContextProvider({ children }) {
           setIsLoading,
           isLoadingforhomepage,
           productsforhomepage,
+          fetchProductById,
+          orderStatusMessage,
+          confirmDelete,
+          setConfirmDelete,
         }}
       >
         {children}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            success: {
+              style: {
+                background: "white",
+                position: "top-right",
+                color: "green",
+                iconTheme: {
+                  primary: "white",
+                  secondary: "green",
+                },
+              },
+            },
+            error: {
+              style: {
+                duration: 4000,
+                background: "white",
+                position: "top-right",
+                color: "red",
+                iconTheme: {
+                  primary: "white",
+                  secondary: "red",
+                },
+              },
+            },
+          }}
+        />
       </ProductContext.Provider>
     </>
   );

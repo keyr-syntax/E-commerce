@@ -191,6 +191,7 @@ const fetchAllOrders = async (req, res) => {
     });
   }
 };
+
 const fetchOrderForOneUser = async (req, res) => {
   try {
     const orderForOneUser = await Order.find({
@@ -490,11 +491,7 @@ const totalOrdersByDate = async (req, res) => {
 };
 const findOrderDetailsById = async (req, res) => {
   try {
-    const { _id } = req.params._id;
-    const orderById = await Order.findById({ _id: req.params._id }).populate(
-      "user",
-      "username email"
-    );
+    const orderById = await Order.findById({ _id: req.params._id });
     if (orderById) {
       return res.json({
         success: true,

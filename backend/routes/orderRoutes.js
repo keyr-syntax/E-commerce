@@ -26,8 +26,8 @@ const {
   verifyUsers,
   verifyAdmins,
 } = require("../middleware/verificationMiddleware.js");
-router.post("/testorder", verifyUsers, calculateTotalOrderPrice);
-router.post("/createorder", verifyUsers, createOrder);
+router.post("/createorder", verifyUsers, calculateTotalOrderPrice);
+// router.post("/createorder", verifyUsers, createOrder);
 router.get("/", verifyUsers, testRoute);
 router.get("/fetchallorders", verifyAdmins, fetchAllOrders);
 router.get("/fetchorderforoneuser", verifyUsers, fetchOrderForOneUser);
@@ -38,7 +38,7 @@ router.get("/salesbyweek", verifyAdmins, totalSalesByWeek);
 router.get("/salesbymonth", verifyAdmins, totalSalesByMonth);
 router.get("/salesbyyear", verifyAdmins, totalSalesByYear);
 router.get("/ordersbydate", verifyAdmins, totalOrdersByDate);
-router.get("/orderbyid/:_id", verifyAdmins, findOrderDetailsById);
+router.get("/fetchorderbyid/:_id", verifyUsers, findOrderDetailsById);
 router.put(
   "/changeorderstatustopaid/:_id",
   verifyAdmins,

@@ -27,7 +27,6 @@ export default function Filterproducts() {
             <Link
               className="filter-products-link"
               key={category._id}
-              // to={`/filterproductlistbycategory/${category.category}`}
               onClick={() => {
                 filterProductsByCategory(category.category);
               }}

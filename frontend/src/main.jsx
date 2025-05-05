@@ -4,14 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import ContextProvider from "./Public Components/ContextProvider";
-import { Provider } from "./components/ui/provider.jsx";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <ContextProvider>
-      <Provider>
-        <App />
-      </Provider>
+      <App />
     </ContextProvider>
   </BrowserRouter>
 );

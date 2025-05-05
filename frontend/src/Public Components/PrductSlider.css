@@ -35,12 +35,13 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: black;
+  background-color: #151533;
   padding: 4px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
+  color: white;
 }
 
 .nav-button:hover {

@@ -1,4 +1,4 @@
-.navbar-container {
+/* .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,6 +46,203 @@
   gap: 25px;
   flex: 1;
 }
+.navbar-options-link-mobile {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.shopping-cart-icon {
+  color: white;
+  cursor: pointer;
+}
+.account-icon {
+  cursor: pointer;
+  margin-right: 25px;
+}
+.menu-icon,
+.x-icon {
+  display: none;
+}
+.navbar-mobile,
+.search-container-mobile,
+.search-container-mobile input,
+.navbar-options-mobile,
+.navbar-options-mobile a {
+  display: none;
+}
+.cart-counter-mobile {
+  display: none;
+}
+.shopping-cart-link {
+  display: block;
+}
+@media only screen and (max-width: 850px) {
+  .search-container,
+  .search-container input,
+  .navbar-options-link {
+    display: none;
+    pointer-events: none;
+    cursor: default;
+  }
+  .cart-counter {
+    display: none;
+  }
+  .cart-counter-mobile {
+    display: block;
+    background-color: #f8312f;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.7rem;
+    position: absolute;
+    top: 0;
+    right: 145px;
+    font-weight: bold;
+    z-index: 999;
+  }
+  .account-icon {
+    margin-right: 0;
+  }
+  .menu-icon,
+  .x-icon {
+    display: block;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .navbar-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #151533;
+    position: fixed;
+    top: 7.5%;
+    right: 0;
+    left: 0;
+    transition: all 1s ease-in-out;
+    z-index: 1000;
+    background-color: #151533;
+  }
+
+  .search-container-mobile,
+  .search-container-mobile input,
+  .navbar-options-mobile,
+  .navbar-options-mobile a {
+    display: block;
+  }
+  .shopping-cart-link {
+    display: block;
+  }
+}
+.search-container-mobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.search-container-mobile input {
+  width: 85vw;
+  margin-left: 30px;
+  margin-right: 10px;
+  height: 35px;
+  border: none;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  color: black;
+  background-color: white;
+}
+.search-icon-mobile {
+  margin: 5px 0 5px -60px;
+
+  color: black;
+  padding: 0;
+}
+.navbar-options-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+.navbar-options-mobile a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-left: 30px;
+  width: 85vw;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.cart-counter {
+  background-color: #f8312f;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.7rem;
+  position: absolute;
+  top: 0;
+  right: 90px;
+  font-weight: bold;
+  z-index: 999;
+} */
+
+/*  */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #151533;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 25px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+.logo-navbar {
+  flex: 1;
+  font-size: 1.3rem;
+  margin-left: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 2;
+  margin-right: 35px;
+}
+.search-container input {
+  flex: 1;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+  height: 35px;
+  border: none;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  color: black;
+}
+.search-icon-desktop {
+  margin: 5px 0 5px -50px;
+  color: black;
+}
+.navbar-options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+  flex: 1;
+}
 .navbar-options-link {
   color: white;
   text-decoration: none;
@@ -55,9 +252,11 @@
   color: white;
   cursor: pointer;
 }
-.account-icon {
+.account-icon-navbar {
   cursor: pointer;
   margin-right: 25px;
+  text-decoration: none;
+  color: white;
 }
 .menu-icon,
 .x-icon {

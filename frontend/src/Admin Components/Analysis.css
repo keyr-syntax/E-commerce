@@ -1,0 +1,62 @@
+.analysis-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
+  margin-left: 20%;
+  margin-right: 55px;
+}
+.analysis-orders {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid white;
+  width: 240px;
+  height: 110px;
+  background-color: #151533;
+  color: white;
+  border-radius: 6px;
+}
+.analysis-h4 {
+  margin: 15px 20px;
+  text-align: center;
+}
+.analysis-icon {
+  margin: 15px 10px;
+}
+.analysis-sales {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  border: 1px solid white;
+  width: 240px;
+  height: 110px;
+  background-color: #151533;
+  color: white;
+  border-radius: 6px;
+}
+.analysis-products {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  border: 1px solid white;
+  width: 240px;
+  height: 110px;
+  background-color: #151533;
+  color: white;
+  border-radius: 6px;
+}
+.analysis-customers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  border: 1px solid white;
+  width: 240px;
+  height: 110px;
+  background-color: #151533;
+  color: white;
+  border-radius: 6px;
+}

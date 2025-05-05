@@ -1,0 +1,276 @@
+.checkout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.form-container {
+  width: 600px;
+  height: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 85px 30px 20px 20px;
+  border-radius: 6px;
+}
+@media (max-width: 1050px) {
+  .checkout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 65px auto 10px auto;
+  }
+  .form-container {
+    margin: 5px auto -55px auto;
+  }
+  .payment-navbar-links {
+    margin: 5px auto 10px auto;
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkout-container {
+    display: none;
+  }
+}
+
+.checkout-header {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  transition: background-color 0.2s ease;
+  padding: 20px;
+}
+.form-input {
+  background-color: #151533;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 30px;
+  display: inline-block;
+}
+.form-input::placeholder {
+  color: white;
+}
+.form-input:hover {
+  border: 1px solid white;
+}
+form label {
+  font-size: 20px;
+  margin: 10px 30px;
+  display: block;
+  font-weight: bold;
+}
+.form-button {
+  background-color: #151533;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 10px 30px 30px;
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  cursor: pointer;
+}
+.form-button:hover {
+  border: 1px solid white;
+}
+.form-button span {
+  padding: 0 5px;
+  font-size: 18px;
+}
+.form-button-container {
+  display: flex;
+  flex-direction: row;
+}
+.payment-navbar-links {
+  display: flex;
+  flex-direction: column;
+  margin: 85px 30px 20px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  width: 350px;
+  height: fit-content;
+}
+.payment-navbar-link-header {
+  color: white;
+  font-size: 25px;
+  transition: background-color 0.2s ease;
+  padding: 20px;
+  text-align: center;
+}
+.payment-navbar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.2s ease;
+  padding: 10px 20px;
+}
+
+.payment-navbar-link-total {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.2s ease;
+  padding: 10px 20px 30px 20px;
+}
+.payment-navbar-link-total span {
+  float: right;
+}
+
+.payment-navbar-link span {
+  float: right;
+}
+.payment-button:hover {
+  border: 1px solid white;
+}
+.payment-button {
+  background-color: #151533;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  width: 80%;
+  display: block;
+  margin: 5px auto 5px auto;
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-size: 18px;
+}
+/* Styling for mobile phones with screen size less than 650px */
+
+.checkout-container-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 65px auto;
+}
+.form-container-mobile {
+  width: 75%;
+  height: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  margin: 0 auto -45px auto;
+}
+
+.checkout-header-mobile {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  transition: background-color 0.2s ease;
+  padding: 20px;
+}
+.form-input-mobile {
+  background-color: #151533;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 20px;
+  display: inline-block;
+  width: 90%;
+}
+.form-input-mobile::placeholder {
+  color: white;
+}
+.form-input-mobile:hover {
+  border: 1px solid white;
+}
+form label {
+  font-size: 20px;
+  margin: 10px 30px;
+  display: block;
+  font-weight: bold;
+}
+.form-button-container-mobile {
+  display: flex;
+  flex-direction: row;
+}
+.form-button-mobile {
+  background-color: #151533;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px;
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  cursor: pointer;
+}
+.form-button-mobile:hover {
+  border: 1px solid white;
+}
+.form-button-mobile span {
+  padding: 0 5px;
+  font-size: 18px;
+}
+
+.payment-navbar-links-mobile {
+  display: flex;
+  flex-direction: column;
+  margin: 85px 30px 20px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  width: 65%;
+  height: fit-content;
+}
+.payment-navbar-link-header-mobile {
+  color: white;
+  font-size: 25px;
+  transition: background-color 0.2s ease;
+  padding: 20px;
+  text-align: center;
+}
+.payment-navbar-link-mobile {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.2s ease;
+  padding: 10px 20px;
+}
+
+.payment-navbar-link-total-mobile {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.2s ease;
+  padding: 10px 20px 30px 20px;
+}
+.payment-navbar-link-total-mobile span {
+  float: right;
+}
+
+.payment-navbar-link-mobile span {
+  float: right;
+}
+.payment-button-mobile:hover {
+  border: 1px solid white;
+}
+.payment-button-mobile {
+  background-color: #151533;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  width: 80%;
+  display: block;
+  margin: 5px auto 5px auto;
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-size: 18px;
+}
+@media (min-width: 601px) {
+  .checkout-container-mobile {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .payment-navbar-links-mobile {
+    width: 80%;
+  }
+  .form-container-mobile {
+    width: 95%;
+  }
+}

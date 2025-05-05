@@ -36,6 +36,7 @@
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .filter-products-link:hover {

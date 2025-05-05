@@ -1,0 +1,23 @@
+.chart-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: "50px auto";
+}
+
+.chart-container-bar {
+  margin: "60px auto 10px auto";
+  border: 1px solid white;
+  width: 480px;
+  height: 300px;
+  border-radius: 6px;
+}
+
+.chart-container-line {
+  border: 1px solid white;
+  width: 480px;
+  height: 300px;
+  border-radius: 6px;
+  margin: "60px auto 10px auto";
+}

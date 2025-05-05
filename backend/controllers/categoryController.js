@@ -59,7 +59,7 @@ const updateCategoryByAdmin = async (req, res) => {
       { category },
       {
         new: true,
-      },
+      }
     );
 
     if (categoryToBeUpdated) {
@@ -110,7 +110,7 @@ const fetchCategoryById = async (req, res) => {
       res.json({
         success: true,
         message: "Category fetched successfully!",
-        findCategoryById: findCategoryById,
+        category: findCategoryById,
       });
     } else {
       res.json({

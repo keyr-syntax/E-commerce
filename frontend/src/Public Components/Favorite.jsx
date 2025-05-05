@@ -1,34 +1,32 @@
 import { useContext } from "react";
-import { ProductContext } from "./ContextProvider";
-import "./ProductsCard.css";
+import { ProductContext } from "./ContextProvider.jsx";
 import { Link } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
+import "./Favorite.css";
 import toast from "react-hot-toast";
 
-const ProductCard = () => {
+function Favorite() {
   const {
+    favorites,
     addToCart,
-    // allProducts,
-    addToFavorites,
     removeFromFavorites,
     isFavorite,
+    addToFavorites,
     renderStars,
-    productsforhomepage,
   } = useContext(ProductContext);
 
   return (
     <>
-      {productsforhomepage && productsforhomepage.length > 0 && (
-        <div className="individualcard-container">
-          {productsforhomepage.map(
+      {favorites && favorites.length > 0 ? (
+        <div className="favorite-container">
+          {favorites.map(
             (product) =>
               product && (
-                <div key={product._id} className="individualcard">
-                  <div className="product-image-div">
+                <div key={product._id} className="favorite">
+                  <div className="favorite-image-div">
                     <img
                       src={product.image}
                       alt={`Product Name: ${product.name}`}
-                      className="productcard-image"
+                      className="favoritecard-image"
                     />
                     <span
                       onClick={() => {
@@ -44,8 +42,8 @@ const ProductCard = () => {
                     </span>
                   </div>
                   <Link
-                    to={`/individualproduct`}
-                    className="individual-product-link"
+                    to={`/individualproduct/${product._id}`}
+                    className="favorite-product-link"
                   >
                     <h3 className="product-name">{product.name}</h3>
                     <p className="product-price-product-card">
@@ -54,14 +52,14 @@ const ProductCard = () => {
                     <div className="product-rating">
                       {renderStars(product.rating)}
                     </div>
-                    <p className="individualproduct-description">
+                    <p className="favoriteproduct-description">
                       {product.description}
                     </p>
                   </Link>
                   <button
                     onClick={() => {
                       addToCart(product);
-                      toast.success(`${product.name} added to the cart`);
+                      toast.success(`${product.name} added to cart`);
                     }}
                     className="add-to-basket"
                   >
@@ -71,9 +69,24 @@ const ProductCard = () => {
               )
           )}
         </div>
+      ) : (
+        <p
+          style={{
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            margin: " 200px auto",
+            display: "block",
+            textAlign: "center",
+            padding: "30px",
+            fontSize: "25px",
+            width: "80vw",
+            borderRadius: "8px",
+          }}
+        >
+          No favorite products
+        </p>
       )}
     </>
   );
-};
+}
 
-export default ProductCard;
+export default Favorite;

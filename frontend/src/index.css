@@ -1,13 +1,4 @@
-:root {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-  color: white;
-  background-color: #151533;
-  box-sizing: border-box;
-  /* font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+body {
+  background-color: #151533 !important;
+  color: white !important;
 }

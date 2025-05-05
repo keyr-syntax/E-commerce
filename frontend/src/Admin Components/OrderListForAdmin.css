@@ -1,0 +1,17 @@
+.nav-tabs .nav-link {
+  background-color: #151533;
+  color: white;
+}
+.nav-tabs {
+  border: 1px solid white;
+}
+
+.nav-tabs.active .nav-link.active {
+  background-color: green;
+}
+
+@media (max-width: 900px) {
+  .nav-tabs {
+    flex-direction: column;
+  }
+}

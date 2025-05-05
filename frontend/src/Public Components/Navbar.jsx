@@ -4,10 +4,10 @@ import { CircleUserRound } from "lucide-react";
 import "./Navbar.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ProductContext } from "./ContextProvider.jsx";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast from "react-hot-toast";
 function Navbar() {
-  const { totalItems, isAdmin, isLoggedIn } = useContext(ProductContext);
+  const { totalItems, isAdmin, isLoggedIn, Logout } =
+    useContext(ProductContext);
   const [searchWord, setSearchWord] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <>
       <nav className="navbar-container">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo-navbar">
           Syntax
         </Link>
         <div className="search-container">
@@ -40,16 +40,7 @@ function Navbar() {
             onClick={() => {
               if (!searchWord) {
                 alert("Please write something...");
-                toast.success("Please write something...", {
-                  position: "top-center",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: false,
-                  progress: undefined,
-                  theme: "dark",
-                });
+                toast.error("Please write something...");
               }
             }}
             to={`/fetchproductbykeyword/${searchWord}`}
@@ -77,7 +68,13 @@ function Navbar() {
             </Link>
           )}
           {isLoggedIn === true && (
-            <Link className="navbar-options-link" to="/logout">
+            <Link
+              onClick={() => {
+                Logout();
+                toast.success("Logout successful");
+              }}
+              className="navbar-options-link"
+            >
               Logout
             </Link>
           )}
@@ -90,7 +87,7 @@ function Navbar() {
           <span className="cart-counter">{totalItems}</span>
           <span className="cart-counter-mobile">{totalItems}</span>
           <Link to="/profile">
-            <CircleUserRound className="account-icon" />
+            <CircleUserRound className="account-icon-navbar" />
           </Link>
           {!menuOpen && (
             <MenuIcon
@@ -118,8 +115,22 @@ function Navbar() {
             {isAdmin && <Link to="/admin">Dashboard</Link>}
             {!isAdmin && <Link to="/profile">Dashboard</Link>}
             <Link>Favorites</Link>
-            {isLoggedIn && <Link to="/login">Login</Link>}
-            {!isLoggedIn && <Link to="/logout">Logout</Link>}
+            {isLoggedIn === false && (
+              <Link className="navbar-options-link-mobile" to="/login">
+                Login
+              </Link>
+            )}
+            {isLoggedIn === true && (
+              <Link
+                onClick={() => {
+                  Logout();
+                  toast.success("Logout successful");
+                }}
+                className="navbar-options-link-mobile"
+              >
+                Logout
+              </Link>
+            )}
             <Link to="/cart" style={{ border: "none" }}>
               Cart
             </Link>
@@ -139,7 +150,7 @@ function Navbar() {
           </div>
         </div>
       )}
-      <ToastContainer limit={1} />
+
       <Outlet />
     </>
   );

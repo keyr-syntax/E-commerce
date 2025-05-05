@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import toast from "react-hot-toast";
 
-const Login = () => {
+const LoginForCheckoutPage = () => {
   const { API_URL, setIsAdmin, setIsLoggedIn, setUser } =
     useContext(ProductContext);
 
@@ -37,7 +37,6 @@ const Login = () => {
         setUser(response.user);
         setIsLoggedIn(true);
         setIsAdmin(response.user.isAdmin);
-        // setAllowRedirect(true);
         localStorage.setItem("token", response.token);
         document.cookie = `token=${response.token}`;
         console.log("token", response.token);
@@ -52,10 +51,10 @@ const Login = () => {
   if (showMessage === true) {
     setTimeout(() => {
       setShowMessage(false);
-    }, 3000);
+    }, 2000);
     setTimeout(() => {
-      navigate("/");
-    }, 3000);
+      navigate("/cart");
+    }, 2000);
   }
 
   return (
@@ -228,4 +227,4 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default Login;
+export default LoginForCheckoutPage;

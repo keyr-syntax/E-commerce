@@ -136,14 +136,8 @@ const orderSchema = new Schema(
           required: true,
         },
         image: {
-          public_id: {
-            type: String,
-            required: true,
-          },
-          url: {
-            type: String,
-            required: true,
-          },
+          type: String,
+          required: true,
         },
         price: {
           type: Number,

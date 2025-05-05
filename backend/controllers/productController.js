@@ -218,12 +218,12 @@ const getProductById = async (req, res) => {
     return res.json("Product id is required!");
   }
   try {
-    const productById = await Product.findById(req.params._id);
+    const productById = await Product.findById({ _id: req.params._id });
     if (productById) {
       return res.json({
         success: true,
         message: "Product fetched successfully!",
-        productById: productById,
+        product: productById,
       });
     } else {
       return res.json("Failed to fetch product!");
